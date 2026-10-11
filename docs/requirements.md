@@ -287,3 +287,16 @@
   - `moveCount`, `onHome` prop 추가
 - [x] `src/ui/Board.tsx` — `GameOver`를 `outerLayout` 밖으로 이동 (viewport 전체 덮음)
   - `moveCount={moveHistory.length}`, `onHome={onExit}` 전달
+
+### 규칙 카드 아이콘
+
+- [x] `src/ui/HomeScreen.tsx` — `RULESET_META` 맵 추가 (규칙명 → `{ icon, color }`)
+  - 표준 ♟/#b58863, Chess960 🎲/#5c8fd6, Crazyhouse 🔄/#d4813a, Fog of War 🌁/#6fa8c0, Atomic 💥/#c0392b, 킹 2개 👑/#c9a227, 아마존 ⚡/#9b59b6
+  - 선택 시 `borderLeftColor: meta.color` inline style로 규칙별 포인트 컬러 테두리
+- [x] `src/ui/HomeScreen.module.css` — `.ruleCardIcon` 추가 (18px), `.ruleCard` left border 3px transparent 추가
+
+### 사이드 패널 FEN 기본 접힘
+
+- [x] `src/ui/Board.module.css` — `.fenContent { display: none }` + `.fenBoxOpen .fenContent { display: block }` 전역 적용
+  - 기존: 데스크탑 항상 표시, 모바일만 토글 → 개선: 데스크탑/모바일 모두 기본 접힘
+  - `.fenToggleBtn` 데스크탑에서도 항상 표시되도록 `display: inline-flex` 적용
