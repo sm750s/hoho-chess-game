@@ -13,7 +13,7 @@ import { MoveHistory, type MoveEntry } from './MoveHistory';
 import { sounds } from '../utils/sounds';
 import { moveNotation, squareName } from '../utils/notation';
 import { boardToFen, fenToBoard } from '../utils/fen';
-import { getBestMove, type AiDifficulty, type AiMove } from '../ai/engine';
+import { getBestMove, type AiDifficulty } from '../ai/engine';
 import { toggleTheme, getCurrentTheme } from '../utils/theme';
 import { getHint } from '../utils/hint';
 import { saveResult } from '../utils/records';
