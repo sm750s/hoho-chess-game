@@ -1,0 +1,154 @@
+.panel {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 20px 20px;
+  background: var(--c-surface);
+  border: 1px solid rgba(181, 136, 99, 0.15);
+  border-radius: 12px;
+  align-self: stretch;
+}
+
+/* ── 헤더 ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lessonBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-accent);
+  background: var(--c-accent-bg);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.exitBtn {
+  background: none;
+  border: none;
+  color: var(--c-text3);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.exitBtn:hover {
+  color: var(--c-text1);
+  background: var(--c-active-bg);
+}
+
+/* ── 제목 & 설명 ── */
+
+.title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-text1);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--c-text2);
+  line-height: 1.65;
+}
+
+/* ── 과제 박스 ── */
+
+.taskBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(181, 136, 99, 0.12);
+  border: 1px solid rgba(181, 136, 99, 0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.taskArrow {
+  font-size: 11px;
+  color: var(--c-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.taskText {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text1);
+  line-height: 1.5;
+}
+
+/* ── 하단: 진행률 + 버튼 ── */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressText {
+  font-size: 11px;
+  color: var(--c-text3);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.progressBar {
+  height: 4px;
+  background: var(--c-bg-subtle2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--c-accent);
+  border-radius: 2px;
+  transition: width 0.35s ease;
+}
+
+.nextBtn {
+  background: var(--c-accent);
+  color: #1a1410;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 0;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+
+.nextBtn:hover {
+  background: var(--c-accent-hover);
+}
+
+.nextBtn:active {
+  transform: scale(0.97);
+}

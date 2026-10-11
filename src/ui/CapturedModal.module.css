@@ -1,0 +1,194 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--c-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal {
+  background: var(--c-surface2);
+  border: 1px solid rgba(181, 136, 99, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 16px 48px var(--c-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── 헤더 ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.colorDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.colorDot.white {
+  background: #f0d9b5;
+  box-shadow: 0 0 0 2px rgba(240, 217, 181, 0.25);
+}
+
+.colorDot.black {
+  background: #2e2b29;
+  border: 2px solid var(--c-accent);
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-text1);
+  margin: 0;
+  flex: 1;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--c-accent);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+
+.closeBtn:hover {
+  color: var(--c-text1);
+  background: var(--c-active-bg);
+}
+
+/* ── 기물 목록 ── */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.row:hover {
+  background: var(--c-bg-subtle);
+}
+
+.row.zero {
+  opacity: 0.35;
+}
+
+.chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.chip.white {
+  background: #b58863;
+  color: #f0d9b5;
+}
+
+.chip.black {
+  background: #f0d9b5;
+  color: #2e2b29;
+}
+
+.name {
+  font-size: 13px;
+  color: var(--c-text2);
+  flex: 1;
+}
+
+.count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text1);
+  min-width: 28px;
+  text-align: right;
+}
+
+.pts {
+  font-size: 12px;
+  color: var(--c-accent);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ── 합계 요약 ── */
+
+.summary {
+  border-top: 1px solid var(--c-border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--c-text2);
+}
+
+.summaryRow strong {
+  color: var(--c-text1);
+  font-weight: 600;
+}
+
+.resultRow {
+  margin-top: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.resultRow.winning {
+  background: rgba(46, 204, 113, 0.12);
+  color: #6fcf97;
+}
+
+.resultRow.winning strong {
+  color: #6fcf97;
+}
+
+.resultRow.losing {
+  background: rgba(231, 76, 60, 0.12);
+  color: #e07070;
+}
+
+.resultRow.losing strong {
+  color: #e07070;
+}
+
+.resultRow.equal {
+  background: var(--c-bg-subtle);
+  color: var(--c-text2);
+}
+
+.resultRow.equal strong {
+  color: var(--c-text2);
+}

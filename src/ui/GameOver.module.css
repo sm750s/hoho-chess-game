@@ -1,0 +1,80 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--c-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.dialog {
+  background: var(--c-surface2);
+  border: 2px solid var(--c-border-frame);
+  border-radius: 12px;
+  padding: 36px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 16px 48px var(--c-shadow);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-text1);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 18px;
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.restartBtn {
+  margin-top: 12px;
+  padding: 10px 32px;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--c-accent);
+  color: #1a1207;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.restartBtn:hover {
+  background: var(--c-accent-hover);
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.replayBtn {
+  padding: 10px 32px;
+  font-size: 15px;
+  font-weight: 700;
+  background: none;
+  color: var(--c-accent);
+  border: 2px solid var(--c-accent);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  width: 100%;
+}
+
+.replayBtn:hover {
+  background: var(--c-accent-bg);
+  color: var(--c-text1);
+}

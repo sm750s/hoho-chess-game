@@ -1,0 +1,92 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── 테마 색상 변수 ── */
+
+:root {
+  /* 보드 칸 크기 */
+  --sq: 72px;
+
+  /* 다크 테마 (기본) */
+  --c-base: #312e2b;
+  --c-surface: #1e1a17;
+  --c-surface2: #2c2420;
+  --c-text1: #f0d9b5;
+  --c-text2: #b8a898;
+  --c-text3: #7a6b5a;
+  --c-text4: #5a4d3e;
+  --c-text-med: rgba(240, 217, 181, 0.75);
+  --c-text-faded: rgba(240, 217, 181, 0.5);
+  --c-text-dim: rgba(240, 217, 181, 0.35);
+  --c-border: rgba(255, 255, 255, 0.07);
+  --c-border-frame: #4a3728;
+  --c-bg-subtle: rgba(255, 255, 255, 0.025);
+  --c-bg-subtle2: rgba(255, 255, 255, 0.05);
+  --c-bg-panel: rgba(0, 0, 0, 0.18);
+  --c-bg-input: rgba(0, 0, 0, 0.22);
+  --c-active-bg: rgba(240, 217, 181, 0.06);
+  --c-active-ring: rgba(240, 217, 181, 0.12);
+  --c-overlay: rgba(0, 0, 0, 0.68);
+  --c-shadow: rgba(0, 0, 0, 0.8);
+  /* 액센트 (버튼 텍스트·아이콘 등) */
+  --c-accent: #b58863;
+  --c-accent-hover: #c89a72;
+  --c-accent-bg: rgba(181, 136, 99, 0.15);
+  --c-accent-border: rgba(181, 136, 99, 0.3);
+  --c-accent-border-hover: rgba(181, 136, 99, 0.6);
+}
+
+/* 라이트 테마 */
+[data-theme="light"] {
+  --c-base: #ede8de;
+  --c-surface: #ffffff;
+  --c-surface2: #f5f0e8;
+  --c-text1: #2c1d0e;
+  --c-text2: #503a28;
+  --c-text3: #6e5440;
+  --c-text4: #8a7058;
+  --c-text-med: rgba(44, 29, 14, 0.85);
+  --c-text-faded: rgba(44, 29, 14, 0.68);
+  --c-text-dim: rgba(44, 29, 14, 0.52);
+  --c-border: rgba(0, 0, 0, 0.13);
+  --c-border-frame: #b89060;
+  --c-bg-subtle: rgba(0, 0, 0, 0.055);
+  --c-bg-subtle2: rgba(0, 0, 0, 0.09);
+  --c-bg-panel: rgba(0, 0, 0, 0.07);
+  --c-bg-input: rgba(0, 0, 0, 0.07);
+  --c-active-bg: rgba(181, 136, 99, 0.12);
+  --c-active-ring: rgba(181, 136, 99, 0.25);
+  --c-overlay: rgba(0, 0, 0, 0.42);
+  --c-shadow: rgba(0, 0, 0, 0.18);
+  /* 액센트: 라이트 배경 위에서 충분한 대비 확보 (#8b5230 ≈ 5.3:1) */
+  --c-accent: #8b5230;
+  --c-accent-hover: #6e3e1e;
+  --c-accent-bg: rgba(181, 136, 99, 0.2);
+  --c-accent-border: rgba(139, 82, 48, 0.35);
+  --c-accent-border-hover: rgba(139, 82, 48, 0.65);
+}
+
+/* ── 반응형 보드 칸 크기 ── */
+
+@media (max-width: 1000px) {
+  :root {
+    --sq: clamp(44px, calc((100vw - 32px) / 8), 72px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --sq: clamp(36px, calc((100vw - 16px) / 8), 56px);
+  }
+}
+
+body {
+  background-color: var(--c-base);
+  color: var(--c-text1);
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s, color 0.2s;
+}

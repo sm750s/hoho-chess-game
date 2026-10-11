@@ -1,0 +1,94 @@
+.screen {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.layout {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+/* ── 완료 화면 ── */
+
+.completedScreen {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completedCard {
+  background: var(--c-surface);
+  border: 1px solid rgba(181, 136, 99, 0.18);
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 16px 48px var(--c-shadow);
+}
+
+.completedIcon {
+  font-size: 56px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 12px rgba(181, 136, 99, 0.5));
+}
+
+.completedTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-text1);
+  margin: 0 0 12px;
+}
+
+.completedDesc {
+  font-size: 15px;
+  color: var(--c-text2);
+  line-height: 1.65;
+  margin: 0 0 32px;
+}
+
+.completedActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.primaryBtn {
+  background: var(--c-accent);
+  color: #1a1410;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s;
+}
+
+.primaryBtn:hover {
+  background: var(--c-accent-hover);
+}
+
+.secondaryBtn {
+  background: none;
+  color: var(--c-accent);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 10px;
+  padding: 13px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+}

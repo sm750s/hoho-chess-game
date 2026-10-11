@@ -1,0 +1,510 @@
+/* ── 전체 화면 ── */
+
+.screen {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.themeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--c-bg-subtle2);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  font-size: 18px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+
+.themeBtn:hover {
+  background: var(--c-bg-subtle2);
+  border-color: var(--c-accent-border-hover);
+}
+
+.card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ── 헤더 ── */
+
+.logo {
+  font-size: clamp(48px, 8vw, 72px);
+  line-height: 1;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 0 20px rgba(181, 136, 99, 0.45));
+}
+
+.title {
+  font-size: clamp(20px, 4.5vw, 28px);
+  font-weight: 700;
+  color: var(--c-text1);
+  margin: 0 0 10px;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: clamp(13px, 2.5vw, 15px);
+  color: var(--c-text3);
+  margin: 0 0 clamp(24px, 5vw, 48px);
+  letter-spacing: 0.3px;
+}
+
+/* ── 섹션 공통 레이블 ── */
+
+.ruleLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--c-text4);
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  text-align: left;
+}
+
+/* ── 규칙 선택 ── */
+
+.ruleSection {
+  margin-bottom: 28px;
+}
+
+.ruleCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.ruleCard {
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+  min-height: 56px;
+}
+
+.ruleCard:hover {
+  border-color: var(--c-accent-border-hover);
+  background: var(--c-bg-subtle2);
+}
+
+.ruleCardSelected {
+  border-color: var(--c-accent) !important;
+  background: var(--c-accent-bg) !important;
+}
+
+.ruleCardName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text1);
+  margin-bottom: 3px;
+}
+
+.ruleCardDesc {
+  font-size: 11px;
+  color: var(--c-text3);
+  line-height: 1.3;
+}
+
+/* ── 상대 선택 ── */
+
+.modeSection {
+  margin-bottom: 20px;
+}
+
+.modeBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.modeBtn {
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 10px;
+  padding: 12px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-text3);
+  min-height: 48px;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.modeBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent);
+}
+
+.modeBtnSelected {
+  border-color: var(--c-accent) !important;
+  background: var(--c-accent-bg) !important;
+  color: var(--c-text1) !important;
+}
+
+/* ── 난이도 선택 ── */
+
+.difficultySection {
+  margin-bottom: 20px;
+}
+
+.difficultyBtns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.difficultyBtn {
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 10px;
+  padding: 10px 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 52px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.difficultyBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  background: var(--c-bg-subtle2);
+}
+
+.difficultyBtnSelected {
+  border-color: var(--c-accent) !important;
+  background: var(--c-accent-bg) !important;
+}
+
+.difficultyLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text1);
+}
+
+.difficultyBtn:not(.difficultyBtnSelected) .difficultyLabel {
+  color: var(--c-text3);
+}
+
+.difficultyDesc {
+  font-size: 10px;
+  color: var(--c-text4);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.difficultyBtnSelected .difficultyDesc {
+  color: var(--c-text3);
+}
+
+/* ── 시간 모드 선택 ── */
+
+.timeSection {
+  margin-bottom: 20px;
+}
+
+.timeBtns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.timeBtn {
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  padding: 10px 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text3);
+  min-height: 40px;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timeBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent);
+}
+
+.timeBtnSelected {
+  border-color: var(--c-accent) !important;
+  background: var(--c-accent-bg) !important;
+  color: var(--c-text1) !important;
+}
+
+/* ── 플레이어 이름 입력 ── */
+
+.nameSection {
+  margin-bottom: 20px;
+}
+
+.nameInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nameInput {
+  background: var(--c-bg-input);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-size: 14px;
+  color: var(--c-text1);
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nameInput::placeholder {
+  color: var(--c-text-dim);
+}
+
+.nameInput:focus {
+  border-color: var(--c-accent-border-hover);
+}
+
+/* ── 액션 버튼 ── */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.primaryBtn {
+  background: var(--c-accent);
+  color: #1a1410;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 0;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  min-height: 52px;
+  letter-spacing: 0.5px;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.primaryBtn:hover {
+  background: var(--c-accent-hover);
+}
+
+.primaryBtn:active {
+  transform: scale(0.97);
+}
+
+.onlineBtn {
+  background: none;
+  color: var(--c-accent);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  min-height: 48px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.onlineBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+  background: var(--c-accent-bg);
+}
+
+.tutorialBtn {
+  background: none;
+  color: var(--c-accent);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.tutorialBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+}
+
+.tutorialIcon {
+  font-size: 16px;
+}
+
+/* ── 전적 기록 ── */
+
+.recordsSection {
+  margin-top: 28px;
+  border-top: 1px solid rgba(181, 136, 99, 0.15);
+  padding-top: 20px;
+}
+
+.recordsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.clearBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 5px;
+  color: var(--c-text3);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  min-height: 28px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.clearBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent);
+}
+
+.recordsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recordRow {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--c-bg-subtle);
+  border-radius: 6px;
+}
+
+.recordDate {
+  font-size: 10px;
+  color: var(--c-text4);
+  text-align: center;
+}
+
+.recordNames {
+  font-size: 11px;
+  color: var(--c-text-faded);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recordResult {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-accent);
+  white-space: nowrap;
+}
+
+/* 마지막 규칙 카드가 혼자 남을 때 전체 열 차지 */
+@media (max-width: 480px) {
+  .ruleCard:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── 반응형: tablet (481px ~ 1000px) ── */
+
+@media (min-width: 481px) and (max-width: 1000px) {
+  .card {
+    max-width: 560px;
+  }
+
+  .ruleCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .timeBtns {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .ruleCard:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── 반응형: desktop (> 1000px) ── */
+
+@media (min-width: 1001px) {
+  .ruleCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .timeBtns {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .ruleCard:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── 반응형: mobile-s (≤ 360px) ── */
+
+@media (max-width: 360px) {
+  .screen {
+    padding: 24px 12px;
+  }
+
+  .logo {
+    font-size: 44px;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .ruleCardName {
+    font-size: 12px;
+  }
+
+  .ruleCardDesc {
+    font-size: 10px;
+  }
+
+  .modeBtn {
+    font-size: 13px;
+  }
+}

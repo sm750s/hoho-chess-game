@@ -1,0 +1,80 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--c-bg-panel);
+  border-radius: 8px;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+}
+
+.header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-faded);
+  padding: 8px 12px 6px;
+  border-bottom: 1px solid var(--c-border);
+  flex-shrink: 0;
+}
+
+.list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 4px 0;
+}
+
+.list::-webkit-scrollbar { width: 4px; }
+.list::-webkit-scrollbar-track { background: transparent; }
+.list::-webkit-scrollbar-thumb { background: var(--c-accent-border); border-radius: 2px; }
+
+.empty {
+  font-size: 12px;
+  color: var(--c-text-dim);
+  padding: 12px;
+  text-align: center;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 28px 1fr 1fr;
+  align-items: center;
+  padding: 2px 8px;
+  gap: 2px;
+}
+
+.rowEven {
+  background: var(--c-bg-subtle);
+}
+
+.moveNum {
+  font-size: 11px;
+  color: var(--c-text-dim);
+  text-align: right;
+  padding-right: 4px;
+  user-select: none;
+}
+
+.move {
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: var(--c-text1);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.move:last-child {
+  color: var(--c-text3);
+}
+
+.rowActive {
+  background: rgba(181, 136, 99, 0.18) !important;
+}
+
+.moveHighlight {
+  color: var(--c-text1) !important;
+  font-weight: 700;
+  background: rgba(181, 136, 99, 0.25);
+  border-radius: 3px;
+}

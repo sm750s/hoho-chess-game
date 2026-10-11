@@ -1,0 +1,159 @@
+.panel {
+  width: calc(8 * var(--sq));
+  padding: 7px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 38px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.active {
+  background: var(--c-active-bg);
+  box-shadow: inset 0 0 0 1px var(--c-active-ring);
+}
+
+/* ── 왼쪽: 턴 인디케이터 + 이름 ── */
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.turnDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.turnDot.white {
+  background: #f0d9b5;
+  box-shadow: 0 0 0 2px rgba(240, 217, 181, 0.25);
+}
+
+.turnDot.black {
+  background: #2e2b29;
+  border: 2px solid var(--c-accent);
+}
+
+@keyframes pulseWhite {
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 2px rgba(240, 217, 181, 0.25); }
+  50%       { transform: scale(1.4); box-shadow: 0 0 8px rgba(240, 217, 181, 0.6); }
+}
+
+@keyframes pulseBlack {
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 2px rgba(181, 136, 99, 0.3); }
+  50%       { transform: scale(1.4); box-shadow: 0 0 8px rgba(181, 136, 99, 0.55); }
+}
+
+.pulsing.white { animation: pulseWhite 1.3s ease-in-out infinite; }
+.pulsing.black { animation: pulseBlack 1.3s ease-in-out infinite; }
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text1);
+  letter-spacing: 0.3px;
+}
+
+.checkBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: #e74c3c;
+  border-radius: 4px;
+  padding: 1px 7px;
+  letter-spacing: 0.2px;
+  animation: checkFlash 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes checkFlash {
+  from { opacity: 1; }
+  to   { opacity: 0.6; }
+}
+
+.advantage {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-accent);
+}
+
+/* ── 오른쪽: 잡은 기물 + 상세 버튼 ── */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.infoBtn {
+  background: none;
+  border: none;
+  color: var(--c-accent);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.infoBtn:hover {
+  color: var(--c-text1);
+  background: var(--c-active-bg);
+}
+
+.captured {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.capturedPiece {
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0.8;
+  display: inline-block;
+}
+
+.capturedPiece.white {
+  color: #fff;
+  text-shadow: 0 0 1px #000;
+}
+
+.capturedPiece.black {
+  color: #1a1a1a;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* ── 타이머 ── */
+
+.timer {
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-text-med);
+  letter-spacing: 0.5px;
+  min-width: 44px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.timerLow {
+  color: #e74c3c;
+  animation: timerFlash 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes timerFlash {
+  from { opacity: 1; }
+  to   { opacity: 0.5; }
+}

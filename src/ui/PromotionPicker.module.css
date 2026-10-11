@@ -1,0 +1,75 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--c-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.dialog {
+  background: var(--c-surface2);
+  border: 2px solid var(--c-border-frame);
+  border-radius: 10px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 12px 40px var(--c-shadow);
+}
+
+.label {
+  color: var(--c-text1);
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.option {
+  width: 76px;
+  height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #f0d9b5;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.12s, transform 0.1s;
+}
+
+.option:hover {
+  border-color: #f6f669;
+  transform: translateY(-2px);
+}
+
+.symbol {
+  font-size: 46px;
+  line-height: 1;
+  display: block;
+}
+
+.name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4a3728;
+}
+
+.white .symbol {
+  color: #fff;
+  text-shadow: 0 0 2px #000, 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.black .symbol {
+  color: #1a1a1a;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+}

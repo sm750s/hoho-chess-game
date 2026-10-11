@@ -1,0 +1,580 @@
+.homeBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 6px;
+  color: var(--c-accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 12px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.homeBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+}
+
+/* ── 전체 레이아웃 ── */
+
+.outerLayout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 100svh;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sidePanel {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  gap: 12px;
+  align-self: center;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.moveHistoryWrapper {
+  height: 108px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.fenToggleBtn {
+  display: none;
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 4px;
+  color: var(--c-accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.fenToggleBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+}
+
+.fenContent {
+  display: block;
+}
+
+/* ── 반응형: tablet + mobile (≤1000px) ── */
+
+@media (max-width: 1000px) {
+  .outerLayout {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 16px 24px;
+    gap: 12px;
+  }
+
+  .sidePanel {
+    width: calc(8 * var(--sq));
+    align-self: auto;
+    gap: 10px;
+  }
+
+  .moveHistoryWrapper {
+    max-height: 160px;
+    flex: none;
+  }
+
+  .btnGroup {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .undoBtn,
+  .hintBtn {
+    flex: 1;
+    min-height: 48px;
+  }
+
+  .fenToggleBtn {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .fenContent {
+    display: none;
+  }
+
+  .fenBoxOpen .fenContent {
+    display: block;
+  }
+}
+
+.modeTag {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-med);
+  letter-spacing: 0.4px;
+  padding: 6px 10px;
+  background: var(--c-bg-subtle2);
+  border-radius: 6px;
+  border: 1px solid var(--c-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.modeTagBtns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.soundToggle {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.75;
+  transition: opacity 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.soundToggle:hover { opacity: 1; }
+.soundToggle:active { transform: scale(0.88); }
+
+.themeToggle {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.75;
+  transition: opacity 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.themeToggle:hover { opacity: 1; }
+.themeToggle:active { transform: scale(0.88); }
+
+.aiThinking {
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.undoBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  color: var(--c-accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.undoBtn:hover:not(:disabled) {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+  background: var(--c-accent-bg);
+}
+
+.undoBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.hintBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  color: var(--c-accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.hintBtn:hover:not(:disabled) {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+  background: var(--c-accent-bg);
+}
+
+.hintBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ── 리플레이 ── */
+
+.replayLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-accent);
+  letter-spacing: 0.4px;
+}
+
+.replayExitBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 5px;
+  color: var(--c-accent);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.replayExitBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-text1);
+}
+
+.replayInfo {
+  text-align: center;
+  font-size: 12px;
+  color: var(--c-text-faded);
+  font-variant-numeric: tabular-nums;
+}
+
+.replayControls {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.replayBtn {
+  flex: 1;
+  background: var(--c-bg-subtle2);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 7px;
+  color: var(--c-accent);
+  font-size: 14px;
+  padding: 8px 4px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  text-align: center;
+}
+
+.replayBtn:hover {
+  background: var(--c-accent-bg);
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-text1);
+}
+
+.replayBtnPlay {
+  flex: 1.6;
+  font-size: 16px;
+}
+
+/* ── FEN ── */
+
+.fenBox {
+  background: var(--c-bg-input);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+}
+
+.fenHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.fenLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--c-text-faded);
+}
+
+.fenCopyBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 4px;
+  color: var(--c-accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.fenCopyBtn:hover {
+  border-color: var(--c-accent-border-hover);
+  color: var(--c-accent-hover);
+}
+
+.fenText {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: var(--c-text-faded);
+  padding: 8px 10px;
+  word-break: break-all;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.fenLoadArea {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fenInput {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--c-bg-input);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 5px;
+  color: var(--c-text1);
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  padding: 6px 8px;
+  resize: none;
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.fenInput::placeholder {
+  color: var(--c-text-dim);
+}
+
+.fenInput:focus {
+  border-color: var(--c-accent-border-hover);
+}
+
+.fenError {
+  font-size: 10px;
+  color: #e06060;
+}
+
+.fenLoadBtn {
+  background: var(--c-accent-bg);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 5px;
+  color: var(--c-accent);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.fenLoadBtn:hover:not(:disabled) {
+  background: rgba(181, 136, 99, 0.32);
+  border-color: var(--c-accent-border-hover);
+}
+
+.fenLoadBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, var(--sq));
+  grid-template-rows: repeat(8, var(--sq));
+  border: 3px solid var(--c-border-frame);
+  box-shadow: 0 8px 32px var(--c-shadow);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  touch-action: none;
+}
+
+.board.turn_white {
+  border-color: #6a5a3e;
+  box-shadow: 0 8px 32px var(--c-shadow), 0 0 0 1px rgba(240, 217, 181, 0.15);
+}
+
+.board.turn_black {
+  border-color: #3a2e22;
+  box-shadow: 0 8px 32px var(--c-shadow), 0 0 0 1px rgba(100, 80, 60, 0.2);
+}
+
+/* Crazyhouse 패 패널 */
+.handPanel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--c-bg-panel);
+  border-radius: 6px;
+  min-height: 40px;
+  width: calc(8 * var(--sq));
+  box-sizing: border-box;
+  transition: opacity 0.2s;
+}
+
+.handPanelInactive {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.handLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-text-faded);
+  margin-right: 4px;
+  user-select: none;
+}
+
+.handEmpty {
+  font-size: 11px;
+  color: var(--c-text-dim);
+  user-select: none;
+}
+
+.handPiece {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 4px;
+  background: var(--c-accent-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.handPiece:hover {
+  background: rgba(181, 136, 99, 0.28);
+  border-color: var(--c-accent-border-hover);
+}
+
+.handPieceSelected {
+  background: rgba(246, 246, 105, 0.3);
+  border-color: #f6f669;
+}
+
+.ghost {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  width: var(--sq);
+  height: var(--sq);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* ── 항복 ── */
+
+.resignBtn {
+  background: none;
+  border: 1px solid rgba(220, 80, 80, 0.4);
+  border-radius: 8px;
+  color: #c85050;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.resignBtn:hover:not(:disabled) {
+  border-color: rgba(220, 80, 80, 0.7);
+  color: #e06060;
+  background: rgba(220, 80, 80, 0.08);
+}
+
+.resignBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.resignConfirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid rgba(220, 80, 80, 0.4);
+  border-radius: 8px;
+  background: rgba(220, 80, 80, 0.06);
+}
+
+.resignConfirmText {
+  font-size: 12px;
+  color: #c85050;
+  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.resignYesBtn {
+  background: rgba(220, 80, 80, 0.15);
+  border: 1px solid rgba(220, 80, 80, 0.5);
+  border-radius: 5px;
+  color: #c85050;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.12s;
+  flex-shrink: 0;
+}
+
+.resignYesBtn:hover {
+  background: rgba(220, 80, 80, 0.28);
+}
+
+.resignNoBtn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 5px;
+  color: var(--c-text3);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  flex-shrink: 0;
+}
+
+.resignNoBtn:hover {
+  background: var(--c-bg-subtle2);
+  color: var(--c-text1);
+}
+
+@media (max-width: 1000px) {
+  .resignBtn {
+    min-height: 48px;
+  }
+}

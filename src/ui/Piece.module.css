@@ -1,0 +1,22 @@
+.piece {
+  font-size: calc(var(--sq) * 0.64);
+  line-height: 1;
+  cursor: inherit;
+  user-select: none;
+  display: block;
+}
+
+.white {
+  color: #fff;
+  text-shadow: 0 0 2px #000, 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.black {
+  color: #1a1a1a;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Amazon 기물: 별도 색상으로 구분 */
+.amazon {
+  filter: hue-rotate(180deg) saturate(1.5);
+}
