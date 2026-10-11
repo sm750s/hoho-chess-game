@@ -19,7 +19,8 @@ interface OnlineInfo {
 }
 
 function App() {
-  const [mode, setMode] = useState<Mode>('home');
+  const hasJoinParam = !!new URLSearchParams(window.location.search).get('join');
+  const [mode, setMode] = useState<Mode>(hasJoinParam ? 'online' : 'home');
   const [ruleset, setRuleset] = useState<RuleSet>(StandardRules);
   const [aiMode, setAiMode] = useState(false);
   const [difficulty, setDifficulty] = useState<AiDifficulty>('medium');
