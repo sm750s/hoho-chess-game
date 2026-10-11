@@ -10,7 +10,7 @@
 ## Phase 1: 표준 체스 ✅
 
 - [x] 보드 렌더링 (8×8 그리드, 좌표 레이블)
-- [x] 기물 표시 (유니코드 심볼)
+- [x] 기물 표시 (→ Phase UI-1에서 Lichess SVG로 교체)
 - [x] 드래그 앤 드롭 이동 (`pointermove` / `pointerup` document 레벨 핸들러)
 - [x] 클릭 이동 (기물 클릭 → 목적지 클릭, `pointerDownSquareRef`로 더블 토글 방지)
 - [x] 합법 이동 표시 (점·링 오버레이 — `Square.tsx`)
@@ -249,3 +249,17 @@
 
 - [x] `HomeScreen.module.css` — 고정 `width: 260px` → `min(260px, calc(100vw - 32px))`
 - [x] `OnlineScreen.module.css` — 고정 `width: 320px` → `min(320px, calc(100vw - 32px))`
+
+---
+
+## Phase UI-1: UI/UX 개선 — 기물 이미지 교체
+
+- [x] Lichess cburnett 기물 세트 다운로드 (`public/pieces/cburnett/` — 12개 SVG, CC BY-SA 3.0)
+  - `wK wQ wR wB wN wP` / `bK bQ bR bB bN bP`
+- [x] `src/ui/Piece.tsx` — 유니코드 심볼 → `<img src="/pieces/cburnett/...">` 교체
+  - `data-piece` span 유지 (Board.tsx 드래그 애니메이션 `style.transform` 적용 대상)
+  - 크기: `calc(var(--sq) * 0.875)` (Square 칸 대비 87.5%)
+  - Amazon 기물: 퀸 SVG + `filter: hue-rotate(180deg) saturate(1.5)` 색조 구분
+- [x] `src/ui/PromotionPicker.tsx` — 자체 유니코드 심볼 → `<Piece>` 컴포넌트 재사용
+  - `.pieceWrap { --sq: 60px }` 로컬 오버라이드로 크기 제어
+  - `.name` 폰트 11px → 13px 개선

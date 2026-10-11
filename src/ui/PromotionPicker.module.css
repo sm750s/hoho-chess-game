@@ -34,12 +34,12 @@
 
 .option {
   width: 76px;
-  height: 88px;
+  height: 96px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   background: #f0d9b5;
   border: 2px solid transparent;
   border-radius: 8px;
@@ -52,24 +52,15 @@
   transform: translateY(-2px);
 }
 
-.symbol {
-  font-size: 46px;
-  line-height: 1;
-  display: block;
+.pieceWrap {
+  --sq: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: #4a3728;
-}
-
-.white .symbol {
-  color: #fff;
-  text-shadow: 0 0 2px #000, 0 1px 3px rgba(0, 0, 0, 0.9);
-}
-
-.black .symbol {
-  color: #1a1a1a;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
 }
