@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { QRCodeSVG } from 'qrcode.react';
 import { AVAILABLE_RULESETS, StandardRules, type RuleSet } from '../rules';
 import { getPlayerId, generateRoomId } from '../firebase/identity';
 import { createRoom, joinRoom, listenRoom } from '../firebase/room';
@@ -8,6 +9,8 @@ import styles from './OnlineScreen.module.css';
 
 // Crazyhouse hand sync not supported in online mode
 const ONLINE_RULESETS: RuleSet[] = AVAILABLE_RULESETS.filter(r => r.name !== 'Crazyhouse');
+
+const BASE_URL = window.location.origin;
 
 interface ReadyParams {
   roomId: string;
@@ -31,6 +34,19 @@ export function OnlineScreen({ onReady, onBack }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  // URL ?join= 파라미터 감지 → 자동으로 참가 화면으로 이동
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const joinCode = params.get('join')?.toUpperCase();
+    if (joinCode) {
+      setRoomCodeInput(joinCode);
+      setPhase('joining');
+      // URL 파라미터 제거 (히스토리 오염 방지)
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
 
   // While waiting: watch for opponent to join
   useEffect(() => {
@@ -104,15 +120,33 @@ export function OnlineScreen({ onReady, onBack }: Props) {
     setTimeout(() => setCopied(false), 2000);
   }
 
+  async function handleCopyLink() {
+    const link = `${BASE_URL}/?join=${createdRoomId}`;
+    await navigator.clipboard.writeText(link).catch(() => {});
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  }
+
   // ── Waiting for opponent ─────────────────────────────────────────────────
 
   if (phase === 'creating') {
+    const shareLink = `${BASE_URL}/?join=${createdRoomId}`;
     return (
       <div className={styles.screen}>
         <div className={styles.card}>
           <div className={styles.logo}>🌐</div>
           <h2 className={styles.title}>방 생성됨</h2>
-          <p className={styles.subtitle}>상대방에게 코드를 공유하세요</p>
+          <p className={styles.subtitle}>상대방에게 링크 또는 코드를 공유하세요</p>
+
+          <div className={styles.qrBox}>
+            <QRCodeSVG value={shareLink} size={160} bgColor="transparent" fgColor="var(--c-text1)" />
+          </div>
+
+          <div className={styles.shareRow}>
+            <button className={styles.copyLinkBtn} onClick={handleCopyLink}>
+              {copiedLink ? '✓ 복사됨' : '🔗 링크 복사'}
+            </button>
+          </div>
 
           <div className={styles.roomCodeBox}>
             <span className={styles.roomCode}>{createdRoomId}</span>

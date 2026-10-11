@@ -202,6 +202,13 @@
 - [x] 상대 차례 대기 중 "상대 차례" 표시
 - [x] `GameOver`에서 온라인 모드 시 새 게임 버튼 숨김 (`onRestart` 미전달)
 
+### 초대 링크 · QR 코드
+
+- [x] `qrcode.react` 패키지 추가
+- [x] 공유 링크 생성: `{origin}/?join=방코드` 형태 (`window.location.origin` 기반)
+- [x] `OnlineScreen.tsx` 대기 화면에 QR 코드 + 링크 복사 버튼 추가
+- [x] `OnlineScreen.tsx` 마운트 시 URL `?join=` 파라미터 감지 → 참가 화면 자동 진입 + 코드 선입력
+
 ### 배포
 
 - [x] `vercel.json` — SPA 라우팅 rewrites 설정

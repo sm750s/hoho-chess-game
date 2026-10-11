@@ -213,6 +213,40 @@
   text-align: left;
 }
 
+/* ── QR Code ── */
+
+.qrBox {
+  background: var(--c-bg-subtle);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+  line-height: 0;
+}
+
+.shareRow {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.copyLinkBtn {
+  width: 100%;
+  background: var(--c-accent-bg);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  color: var(--c-accent);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.copyLinkBtn:hover {
+  background: rgba(181, 136, 99, 0.28);
+  border-color: var(--c-accent-border-hover);
+}
+
 /* ── Room code display ── */
 
 .roomCodeBox {
