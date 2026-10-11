@@ -1,18 +1,19 @@
 .panel {
   width: calc(8 * var(--sq));
-  padding: 7px 10px;
+  padding: 7px 10px 7px 13px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   min-height: 38px;
-  transition: background-color 0.2s, box-shadow 0.2s;
+  border-left: 3px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .active {
   background: var(--c-active-bg);
-  box-shadow: inset 0 0 0 1px var(--c-active-ring);
+  border-left-color: var(--c-point);
 }
 
 /* ── 왼쪽: 턴 인디케이터 + 이름 ── */
@@ -43,13 +44,13 @@
 }
 
 @keyframes pulseWhite {
-  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 2px rgba(240, 217, 181, 0.25); }
-  50%       { transform: scale(1.4); box-shadow: 0 0 8px rgba(240, 217, 181, 0.6); }
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.3); }
+  50%       { transform: scale(1.4); box-shadow: 0 0 8px rgba(74, 144, 217, 0.6); }
 }
 
 @keyframes pulseBlack {
-  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 2px rgba(181, 136, 99, 0.3); }
-  50%       { transform: scale(1.4); box-shadow: 0 0 8px rgba(181, 136, 99, 0.55); }
+  0%, 100% { transform: scale(1);   box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.3); }
+  50%       { transform: scale(1.4); box-shadow: 0 0 8px rgba(74, 144, 217, 0.55); }
 }
 
 .pulsing.white { animation: pulseWhite 1.3s ease-in-out infinite; }
@@ -84,7 +85,7 @@
   color: var(--c-accent);
 }
 
-/* ── 오른쪽: 잡은 기물 + 상세 버튼 ── */
+/* ── 오른쪽: 잡은 기물 + 타이머 + 상세 버튼 ── */
 
 .right {
   display: flex;
@@ -119,20 +120,10 @@
 }
 
 .capturedPiece {
-  font-size: 15px;
-  line-height: 1;
-  opacity: 0.8;
+  width: 18px;
+  height: 18px;
   display: inline-block;
-}
-
-.capturedPiece.white {
-  color: #fff;
-  text-shadow: 0 0 1px #000;
-}
-
-.capturedPiece.black {
-  color: #1a1a1a;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+  opacity: 0.85;
 }
 
 /* ── 타이머 ── */
@@ -146,6 +137,11 @@
   min-width: 44px;
   text-align: right;
   flex-shrink: 0;
+  transition: color 0.3s;
+}
+
+.timerWarning {
+  color: #e67e22;
 }
 
 .timerLow {

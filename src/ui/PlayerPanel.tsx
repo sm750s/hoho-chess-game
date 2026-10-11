@@ -5,9 +5,13 @@ import styles from './PlayerPanel.module.css';
 
 const PIECE_ORDER: PieceType[] = ['Q', 'R', 'B', 'N', 'P'];
 
-const SYMBOLS: Record<string, string> = {
-  'white-Q': '♕', 'white-R': '♖', 'white-B': '♗', 'white-N': '♘', 'white-P': '♙',
-  'black-Q': '♛', 'black-R': '♜', 'black-B': '♝', 'black-N': '♞', 'black-P': '♟',
+const PIECE_SVG: Record<string, string> = {
+  'white-Q': '/pieces/cburnett/wQ.svg', 'white-R': '/pieces/cburnett/wR.svg',
+  'white-B': '/pieces/cburnett/wB.svg', 'white-N': '/pieces/cburnett/wN.svg',
+  'white-P': '/pieces/cburnett/wP.svg',
+  'black-Q': '/pieces/cburnett/bQ.svg', 'black-R': '/pieces/cburnett/bR.svg',
+  'black-B': '/pieces/cburnett/bB.svg', 'black-N': '/pieces/cburnett/bN.svg',
+  'black-P': '/pieces/cburnett/bP.svg',
 };
 
 function formatTime(seconds: number): string {
@@ -38,7 +42,14 @@ export function PlayerPanel({ color, isActive, isInCheck, capturedPieces, materi
   const label = name ?? (color === 'white' ? '백' : '흑');
   const enemyColor: Color = color === 'white' ? 'black' : 'white';
   const showTimer = timeSeconds !== undefined && isFinite(timeSeconds);
-  const isLowTime = showTimer && timeSeconds! <= 10;
+  const isWarningTime = showTimer && timeSeconds! <= 60 && timeSeconds! > 30;
+  const isLowTime = showTimer && timeSeconds! <= 30;
+
+  const timerClass = isLowTime
+    ? styles.timerLow
+    : isWarningTime
+      ? styles.timerWarning
+      : '';
 
   return (
     <>
@@ -53,17 +64,22 @@ export function PlayerPanel({ color, isActive, isInCheck, capturedPieces, materi
         </div>
         <div className={styles.right}>
           {showTimer && (
-            <span className={`${styles.timer} ${isLowTime ? styles.timerLow : ''}`}>
+            <span className={`${styles.timer} ${timerClass}`}>
               {formatTime(timeSeconds!)}
             </span>
           )}
           <div className={styles.captured}>
             {PIECE_ORDER.flatMap(type => {
               const count = groups[type] ?? 0;
+              const src = PIECE_SVG[`${enemyColor}-${type}`];
               return Array.from({ length: count }, (_, i) => (
-                <span key={`${type}-${i}`} className={`${styles.capturedPiece} ${styles[enemyColor]}`}>
-                  {SYMBOLS[`${enemyColor}-${type}`]}
-                </span>
+                <img
+                  key={`${type}-${i}`}
+                  src={src}
+                  alt={`${enemyColor} ${type}`}
+                  className={styles.capturedPiece}
+                  draggable="false"
+                />
               ));
             })}
           </div>

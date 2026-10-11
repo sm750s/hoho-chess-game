@@ -27,8 +27,9 @@
   --c-bg-subtle2: rgba(255, 255, 255, 0.05);
   --c-bg-panel: rgba(0, 0, 0, 0.18);
   --c-bg-input: rgba(0, 0, 0, 0.22);
-  --c-active-bg: rgba(240, 217, 181, 0.06);
-  --c-active-ring: rgba(240, 217, 181, 0.12);
+  --c-active-bg: rgba(74, 144, 217, 0.08);
+  --c-active-ring: rgba(74, 144, 217, 0.18);
+  --c-point: #4a90d9;
   --c-overlay: rgba(0, 0, 0, 0.68);
   --c-shadow: rgba(0, 0, 0, 0.8);
   /* 액센트 (버튼 텍스트·아이콘 등) */
@@ -57,8 +58,9 @@
   --c-bg-subtle2: rgba(0, 0, 0, 0.09);
   --c-bg-panel: rgba(0, 0, 0, 0.07);
   --c-bg-input: rgba(0, 0, 0, 0.07);
-  --c-active-bg: rgba(181, 136, 99, 0.12);
-  --c-active-ring: rgba(181, 136, 99, 0.25);
+  --c-active-bg: rgba(74, 144, 217, 0.09);
+  --c-active-ring: rgba(74, 144, 217, 0.22);
+  --c-point: #4a90d9;
   --c-overlay: rgba(0, 0, 0, 0.42);
   --c-shadow: rgba(0, 0, 0, 0.18);
   /* 액센트: 라이트 배경 위에서 충분한 대비 확보 (#8b5230 ≈ 5.3:1) */
