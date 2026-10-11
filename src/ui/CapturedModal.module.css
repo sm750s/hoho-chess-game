@@ -117,13 +117,13 @@
 }
 
 .name {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--c-text2);
   flex: 1;
 }
 
 .count {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--c-text1);
   min-width: 28px;
@@ -150,7 +150,7 @@
 .summaryRow {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--c-text2);
 }
 

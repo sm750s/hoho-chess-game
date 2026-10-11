@@ -64,7 +64,7 @@
 }
 
 .checkBadge {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: #fff;
   background: #e74c3c;
@@ -80,7 +80,7 @@
 }
 
 .advantage {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--c-accent);
 }
