@@ -7,7 +7,7 @@
 ### 게임 모드
 - **로컬 2인 대전** — 같은 화면에서 두 명이 번갈아 플레이
 - **AI 대전** — 초급 / 중급 / 고급 난이도 (Minimax + Alpha-Beta Pruning)
-- **온라인 대전** — Firebase Realtime Database 기반 실시간 대전 (방 코드 공유)
+- **온라인 대전** — Firebase Realtime Database 기반 실시간 대전 (QR 코드 / 초대 링크 / 방 코드 공유)
 
 ### 변형 규칙
 | 규칙 | 설명 |
