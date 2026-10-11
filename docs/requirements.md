@@ -300,3 +300,8 @@
 - [x] `src/ui/Board.module.css` — `.fenContent { display: none }` + `.fenBoxOpen .fenContent { display: block }` 전역 적용
   - 기존: 데스크탑 항상 표시, 모바일만 토글 → 개선: 데스크탑/모바일 모두 기본 접힘
   - `.fenToggleBtn` 데스크탑에서도 항상 표시되도록 `display: inline-flex` 적용
+
+### 폰트 사이즈 통일
+
+- [x] `src/ui/*.css` 10개 모듈 일괄 적용 — `10px/11px → 12px` (캡션/보조 레이블), `13px → 14px` (보조 텍스트)
+  - 적용 파일: Board, CapturedModal, GameOver, HomeScreen, MoveHistory, OnlineScreen, PlayerPanel, PromotionPicker, Square, TutorialPanel
