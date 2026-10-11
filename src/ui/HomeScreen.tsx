@@ -80,7 +80,15 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
         {theme === 'dark' ? '☀️' : '🌙'}
       </button>
       <div className={styles.card}>
-        <div className={styles.logo}>♔</div>
+        <div className={styles.heroBanner}>
+          {(['bR','bN','bK'] as const).map(p => (
+            <img key={p} src={`/pieces/cburnett/${p}.svg`} className={styles.heroPiece} alt="" />
+          ))}
+          <div className={styles.heroVs}>vs</div>
+          {(['wK','wN','wR'] as const).map(p => (
+            <img key={p} src={`/pieces/cburnett/${p}.svg`} className={`${styles.heroPiece} ${styles.heroPieceFlip}`} alt="" />
+          ))}
+        </div>
         <h1 className={styles.title}>호호가족의 체스게임</h1>
         <p className={styles.subtitle}>전략의 게임에 오신 것을 환영합니다</p>
 

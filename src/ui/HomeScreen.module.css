@@ -52,6 +52,44 @@
   filter: drop-shadow(0 0 20px rgba(181, 136, 99, 0.45));
 }
 
+/* ── 헤더 일러스트 ── */
+
+.heroBanner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 18px;
+  height: 72px;
+}
+
+.heroPiece {
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 4px 12px rgba(181, 136, 99, 0.45));
+  transition: transform 0.2s;
+}
+
+.heroPiece:nth-child(1) { transform: translateY(4px); }
+.heroPiece:nth-child(2) { transform: translateY(-8px); }
+.heroPiece:nth-child(3) { transform: translateY(0); }
+
+/* 4th child = .heroVs div (not a piece) */
+/* 5th–7th = white pieces (flipped) */
+.heroPiece.heroPieceFlip:nth-child(5) { transform: scaleX(-1) translateY(0); }
+.heroPiece.heroPieceFlip:nth-child(6) { transform: scaleX(-1) translateY(-8px); }
+.heroPiece.heroPieceFlip:nth-child(7) { transform: scaleX(-1) translateY(4px); }
+
+.heroVs {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--c-text-faded);
+  letter-spacing: 1px;
+  padding: 0 6px;
+  align-self: center;
+  opacity: 0.6;
+}
+
 .title {
   font-size: clamp(20px, 4.5vw, 28px);
   font-weight: 700;
