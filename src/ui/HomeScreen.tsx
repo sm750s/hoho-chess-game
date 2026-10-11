@@ -22,6 +22,16 @@ const DIFFICULTY_OPTIONS: { value: AiDifficulty; label: string; desc: string }[]
 
 const DIFFICULTY_LABEL: Record<AiDifficulty, string> = { easy: '초급', medium: '중급', hard: '고급' };
 
+const RULESET_META: Record<string, { icon: string; color: string }> = {
+  '표준':       { icon: '♟',  color: '#b58863' },
+  'Chess960':   { icon: '🎲', color: '#5c8fd6' },
+  'Crazyhouse': { icon: '🔄', color: '#d4813a' },
+  'Fog of War': { icon: '🌁', color: '#6fa8c0' },
+  'Atomic':     { icon: '💥', color: '#c0392b' },
+  '킹 2개':    { icon: '👑', color: '#c9a227' },
+  '아마존':    { icon: '⚡', color: '#9b59b6' },
+};
+
 function formatRecordResult(record: GameRecord): string {
   if (record.result === 'draw') return '무';
   return record.result === 'white' ? record.white : record.black;
@@ -78,16 +88,22 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
         <div className={styles.ruleSection}>
           <p className={styles.ruleLabel}>규칙</p>
           <div className={styles.ruleCards}>
-            {AVAILABLE_RULESETS.map((ruleset) => (
-              <button
-                key={ruleset.name}
-                className={`${styles.ruleCard} ${selected === ruleset ? styles.ruleCardSelected : ''}`}
-                onClick={() => setSelected(ruleset)}
-              >
-                <div className={styles.ruleCardName}>{ruleset.name}</div>
-                <div className={styles.ruleCardDesc}>{ruleset.description}</div>
-              </button>
-            ))}
+            {AVAILABLE_RULESETS.map((ruleset) => {
+              const meta = RULESET_META[ruleset.name] ?? { icon: '♟', color: '#b58863' };
+              const isSelected = selected === ruleset;
+              return (
+                <button
+                  key={ruleset.name}
+                  className={`${styles.ruleCard} ${isSelected ? styles.ruleCardSelected : ''}`}
+                  style={{ borderLeftColor: isSelected ? meta.color : undefined } as React.CSSProperties}
+                  onClick={() => setSelected(ruleset)}
+                >
+                  <div className={styles.ruleCardIcon} style={{ color: meta.color }}>{meta.icon}</div>
+                  <div className={styles.ruleCardName}>{ruleset.name}</div>
+                  <div className={styles.ruleCardDesc}>{ruleset.description}</div>
+                </button>
+              );
+            })}
           </div>
         </div>
 
