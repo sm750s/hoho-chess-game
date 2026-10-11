@@ -38,6 +38,16 @@
   --c-accent-bg: rgba(181, 136, 99, 0.15);
   --c-accent-border: rgba(181, 136, 99, 0.3);
   --c-accent-border-hover: rgba(181, 136, 99, 0.6);
+  /* 위험 (항복·경고) */
+  --c-danger: #c85050;
+  --c-danger-hover: #e06060;
+  --c-danger-border: rgba(220, 80, 80, 0.4);
+  --c-danger-border-hover: rgba(220, 80, 80, 0.7);
+  --c-danger-bg: rgba(220, 80, 80, 0.08);
+  --c-danger-bg-strong: rgba(220, 80, 80, 0.15);
+  --c-danger-bg-confirm: rgba(220, 80, 80, 0.06);
+  --c-danger-bg-hover: rgba(220, 80, 80, 0.28);
+  --c-danger-btn-border: rgba(220, 80, 80, 0.5);
 }
 
 /* 라이트 테마 */
