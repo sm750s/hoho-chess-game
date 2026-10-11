@@ -58,7 +58,8 @@
 }
 
 .fenToggleBtn {
-  display: none;
+  display: inline-flex;
+  align-items: center;
   background: none;
   border: 1px solid var(--c-accent-border);
   border-radius: 4px;
@@ -76,6 +77,10 @@
 }
 
 .fenContent {
+  display: none;
+}
+
+.fenBoxOpen .fenContent {
   display: block;
 }
 
@@ -111,18 +116,6 @@
     min-height: 48px;
   }
 
-  .fenToggleBtn {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .fenContent {
-    display: none;
-  }
-
-  .fenBoxOpen .fenContent {
-    display: block;
-  }
 }
 
 .modeTag {
