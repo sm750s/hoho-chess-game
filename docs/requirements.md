@@ -305,3 +305,24 @@
 
 - [x] `src/ui/*.css` 10개 모듈 일괄 적용 — `10px/11px → 12px` (캡션/보조 레이블), `13px → 14px` (보조 텍스트)
   - 적용 파일: Board, CapturedModal, GameOver, HomeScreen, MoveHistory, OnlineScreen, PlayerPanel, PromotionPicker, Square, TutorialPanel
+
+### 홈 화면 헤더 기물 일러스트
+
+- [x] `src/ui/HomeScreen.tsx` — 텍스트 ♔ 로고 → 기물 SVG 배너로 교체
+  - bR/bN/bK vs wK/wN/wR 나이트 중심 스태거(−8px) 구도
+  - 흰 기물은 `scaleX(-1)` 좌우 반전으로 마주 보는 배치
+- [x] `src/ui/HomeScreen.module.css` — `.heroBanner`, `.heroPiece`, `.heroPieceFlip`, `.heroVs` 추가
+
+### 버튼 시스템 radius 3단계 표준화
+
+- [x] `src/ui/Board.module.css` — 불일치 radius 정리
+  - Ghost/소형 6px: fenToggleBtn(4→6), fenCopyBtn(4→6), fenLoadBtn(5→6), replayExitBtn(5→6), resignYesBtn(5→6), resignNoBtn(5→6)
+  - Secondary 8px: replayBtn(7→8), 중복 `background` 제거
+- [x] `src/ui/HomeScreen.module.css` — clearBtn 5→6px, primaryBtn 호버 box-shadow 추가
+
+### 색상 토큰 CSS 변수화 — danger 패밀리
+
+- [x] `src/index.css` — `--c-danger` 패밀리 9개 변수 추가 (`:root`)
+  - `--c-danger`, `--c-danger-hover`, `--c-danger-border`, `--c-danger-border-hover`
+  - `--c-danger-bg`, `--c-danger-bg-strong`, `--c-danger-bg-confirm`, `--c-danger-bg-hover`, `--c-danger-btn-border`
+- [x] `src/ui/Board.module.css` — 하드코딩 danger 색상 10곳 → CSS 변수 참조로 교체
