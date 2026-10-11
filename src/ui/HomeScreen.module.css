@@ -355,15 +355,17 @@
   width: 100%;
   min-height: 52px;
   letter-spacing: 0.5px;
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
 }
 
 .primaryBtn:hover {
   background: var(--c-accent-hover);
+  box-shadow: 0 4px 16px rgba(181, 136, 99, 0.35);
 }
 
 .primaryBtn:active {
   transform: scale(0.97);
+  box-shadow: none;
 }
 
 .onlineBtn {
@@ -431,7 +433,7 @@
 .clearBtn {
   background: none;
   border: 1px solid var(--c-accent-border);
-  border-radius: 5px;
+  border-radius: 6px;
   color: var(--c-text3);
   font-size: 12px;
   font-weight: 600;

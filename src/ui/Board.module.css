@@ -62,7 +62,7 @@
   align-items: center;
   background: none;
   border: 1px solid var(--c-accent-border);
-  border-radius: 4px;
+  border-radius: 6px;
   color: var(--c-accent);
   font-size: 12px;
   font-weight: 600;
@@ -234,7 +234,7 @@
 .replayExitBtn {
   background: none;
   border: 1px solid var(--c-accent-border);
-  border-radius: 5px;
+  border-radius: 6px;
   color: var(--c-accent);
   font-size: 14px;
   font-weight: 700;
@@ -264,9 +264,9 @@
 
 .replayBtn {
   flex: 1;
-  background: var(--c-bg-subtle2);
+  background: none;
   border: 1px solid var(--c-accent-border);
-  border-radius: 7px;
+  border-radius: 8px;
   color: var(--c-accent);
   font-size: 14px;
   padding: 8px 4px;
@@ -314,7 +314,7 @@
 .fenCopyBtn {
   background: none;
   border: 1px solid var(--c-accent-border);
-  border-radius: 4px;
+  border-radius: 6px;
   color: var(--c-accent);
   font-size: 12px;
   font-weight: 600;
@@ -377,7 +377,7 @@
 .fenLoadBtn {
   background: var(--c-accent-bg);
   border: 1px solid var(--c-accent-border);
-  border-radius: 5px;
+  border-radius: 6px;
   color: var(--c-accent);
   font-size: 12px;
   font-weight: 600;
@@ -534,7 +534,7 @@
 .resignYesBtn {
   background: rgba(220, 80, 80, 0.15);
   border: 1px solid rgba(220, 80, 80, 0.5);
-  border-radius: 5px;
+  border-radius: 6px;
   color: #c85050;
   font-size: 12px;
   font-weight: 700;
@@ -551,7 +551,7 @@
 .resignNoBtn {
   background: none;
   border: 1px solid var(--c-accent-border);
-  border-radius: 5px;
+  border-radius: 6px;
   color: var(--c-text3);
   font-size: 12px;
   font-weight: 600;
