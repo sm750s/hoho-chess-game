@@ -1,80 +1,187 @@
+/* ── 풀스크린 오버레이 ── */
+
 .overlay {
   position: fixed;
   inset: 0;
-  background: var(--c-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 200;
+  animation: fadeIn 0.35s ease-out;
 }
 
-.dialog {
-  background: var(--c-surface2);
-  border: 2px solid var(--c-border-frame);
-  border-radius: 12px;
-  padding: 36px 48px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── 결과별 배경 ── */
+
+.win {
+  background: radial-gradient(ellipse at 50% 20%, #2e2008 0%, #1a1205 45%, #0e0b07 100%);
+}
+
+.draw {
+  background: radial-gradient(ellipse at 50% 20%, #1e1c1a 0%, #141210 45%, #0c0b09 100%);
+}
+
+/* ── 콘텐츠 레이아웃 ── */
+
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  box-shadow: 0 16px 48px var(--c-shadow);
+  gap: 14px;
+  padding: 48px 32px 56px;
+  width: 100%;
+  max-width: 360px;
   text-align: center;
 }
 
+/* ── 기물 이미지 ── */
+
+.pieceRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.kingImg {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 6px 20px rgba(200, 160, 60, 0.35));
+  animation: floatIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.win .kingImg {
+  filter: drop-shadow(0 6px 24px rgba(220, 170, 60, 0.5));
+}
+
+.kingFlipped {
+  transform: scaleX(-1);
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.kingFlipped {
+  transform: scaleX(-1);
+  animation: floatInFlipped 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes floatInFlipped {
+  from { opacity: 0; transform: scaleX(-1) translateY(16px) scale(0.85); }
+  to   { opacity: 1; transform: scaleX(-1) translateY(0) scale(1); }
+}
+
+/* ── 텍스트 ── */
+
 .title {
   margin: 0;
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--c-text1);
+  font-size: 36px;
+  font-weight: 800;
+  color: #f0d9b5;
   letter-spacing: -0.5px;
+}
+
+.win .title {
+  color: #e8c870;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 18px;
-  color: var(--c-accent);
+  font-size: 16px;
   font-weight: 600;
+  color: rgba(240, 217, 181, 0.6);
+  letter-spacing: 0.2px;
 }
 
-.restartBtn {
-  margin-top: 12px;
-  padding: 10px 32px;
-  font-size: 15px;
-  font-weight: 700;
-  background: var(--c-accent);
-  color: #1a1207;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.12s;
+/* ── 통계 ── */
+
+.statsRow {
+  display: flex;
+  gap: 10px;
+  margin: 6px 0;
 }
 
-.restartBtn:hover {
-  background: var(--c-accent-hover);
+.statCard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 96px;
 }
+
+.statValue {
+  font-size: 26px;
+  font-weight: 800;
+  color: #f0d9b5;
+  font-variant-numeric: tabular-nums;
+}
+
+.statLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(240, 217, 181, 0.45);
+  letter-spacing: 0.5px;
+}
+
+/* ── 버튼 ── */
 
 .actions {
-  margin-top: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  margin-top: 8px;
 }
 
-.replayBtn {
-  padding: 10px 32px;
-  font-size: 15px;
+.primaryBtn {
+  width: 100%;
+  padding: 14px 32px;
+  font-size: 16px;
   font-weight: 700;
-  background: none;
-  color: var(--c-accent);
-  border: 2px solid var(--c-accent);
-  border-radius: 6px;
+  background: var(--c-accent);
+  color: #1a1207;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.12s, color 0.12s;
+  transition: background 0.15s;
+}
+
+.primaryBtn:hover {
+  background: var(--c-accent-hover);
+}
+
+.secondaryRow {
+  display: flex;
+  gap: 8px;
   width: 100%;
 }
 
-.replayBtn:hover {
-  background: var(--c-accent-bg);
-  color: var(--c-text1);
+.secondaryBtn {
+  flex: 1;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(240, 217, 181, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
 }

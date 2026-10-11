@@ -263,3 +263,27 @@
 - [x] `src/ui/PromotionPicker.tsx` — 자체 유니코드 심볼 → `<Piece>` 컴포넌트 재사용
   - `.pieceWrap { --sq: 60px }` 로컬 오버라이드로 크기 제어
   - `.name` 폰트 11px → 13px 개선
+
+---
+
+## Phase UI-2: UI/UX 개선 — 플레이어 패널 & 게임 종료 화면
+
+### 플레이어 패널 개선
+
+- [x] `src/index.css` — 포인트 컬러 CSS 변수 추가 (`--c-point: #4a90d9`, `--c-active-bg`, `--c-active-ring`)
+- [x] `src/ui/PlayerPanel.module.css` — 활성 턴 포인트 컬러 테두리 (`border-left: 3px solid var(--c-point)`)
+  - 펄싱 애니메이션 색상 파란 글로우(`rgba(74, 144, 217, ...)`)로 통일
+  - `.timerWarning` (30~60초: 주황 #e67e22), `.timerLow` (30초 이하: 빨강 #e74c3c + 깜빡임)
+- [x] `src/ui/PlayerPanel.tsx` — 잡은 기물 유니코드 → 18×18px SVG `<img>` 교체
+  - `isWarningTime` (60s > t > 30s), `isLowTime` (t ≤ 30s) 상태 분기 추가
+
+### 게임 종료 화면 전환
+
+- [x] `src/ui/GameOver.tsx` — 모달 다이얼로그 → 전체 화면 결과 화면으로 전환
+  - 승리: 승자 킹 SVG + 골든 제목 `${winnerLabel} 승리!` + 따뜻한 어두운 그라디언트 배경
+  - 무승부: 양쪽 킹 SVG (좌우 반전 배치) + 중립 배경
+  - 통계 카드: 총 수(`moveCount`) 표시
+  - 버튼: 새 게임 (Primary) / 다시보기·홈으로 (Secondary)
+  - `moveCount`, `onHome` prop 추가
+- [x] `src/ui/Board.tsx` — `GameOver`를 `outerLayout` 밖으로 이동 (viewport 전체 덮음)
+  - `moveCount={moveHistory.length}`, `onHome={onExit}` 전달

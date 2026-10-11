@@ -831,6 +831,7 @@ export function Board({
   const displayHistory: MoveEntry[] = moveHistory.map(e => ({ notation: e.notation, color: e.color }));
 
   return (
+    <>
     <div className={styles.outerLayout}>
       {/* ── 보드 영역 ────────────────────────────────────────────────────── */}
       <div className={styles.wrapper}>
@@ -950,15 +951,6 @@ export function Board({
 
         {promotionPending && (
           <PromotionPicker color={promotionPending.color} onSelect={handlePromotion} />
-        )}
-        {gameOver && replayIndex === null && (
-          <GameOver
-            status={gameOver.status}
-            loser={gameOver.loser}
-            playerNames={playerNames}
-            onRestart={onlineGame ? undefined : handleRestart}
-            onReplay={moveHistory.length > 0 ? () => { setReplayIndex(0); setReplayPlaying(false); } : undefined}
-          />
         )}
       </div>
 
@@ -1112,5 +1104,17 @@ export function Board({
         )}
       </div>
     </div>
+    {gameOver && replayIndex === null && (
+      <GameOver
+        status={gameOver.status}
+        loser={gameOver.loser}
+        playerNames={playerNames}
+        moveCount={moveHistory.length}
+        onRestart={onlineGame ? undefined : handleRestart}
+        onReplay={moveHistory.length > 0 ? () => { setReplayIndex(0); setReplayPlaying(false); } : undefined}
+        onHome={onExit}
+      />
+    )}
+    </>
   );
 }
