@@ -326,3 +326,22 @@
   - `--c-danger`, `--c-danger-hover`, `--c-danger-border`, `--c-danger-border-hover`
   - `--c-danger-bg`, `--c-danger-bg-strong`, `--c-danger-bg-confirm`, `--c-danger-bg-hover`, `--c-danger-btn-border`
 - [x] `src/ui/Board.module.css` — 하드코딩 danger 색상 10곳 → CSS 변수 참조로 교체
+
+---
+
+## Phase UI-3: UI/UX 개선 — 애니메이션 & 이펙트
+
+### 승리 파티클 효과
+
+- [x] `src/ui/GameOver.tsx` — 승리 화면 전용 파티클 16개 (`PARTICLES` 상수 배열)
+  - 속성: `left`, `size(4–8px)`, `color(#e8c870/#f0d9b5/#c89a72)`, `delay(0–0.8s)`, `drift(±34px)`
+  - 무승부 시 파티클 렌더링 없음 (`!isDraw` 조건)
+- [x] `src/ui/GameOver.module.css` — `.particles`, `.particle`, `@keyframes particleRise` 추가
+  - `bottom: 15%` 에서 `translateY(-520px)` + `var(--drift)` 수평 드리프트 + 0.4x→0.15x 축소
+  - `animation-fill-mode: both`, 총 2.2s
+
+### 화면 전환 모션
+
+- [x] `src/index.css` — `@keyframes pageFadeIn` / `@keyframes pageSlideUp` 전역 정의
+- [x] `src/ui/HomeScreen.module.css` — `.screen { animation: pageFadeIn 0.4s ease-out }` 적용
+- [x] `src/ui/Board.module.css` — `.outerLayout { animation: pageSlideUp 0.35s ease-out }` 적용

@@ -102,3 +102,15 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.2s, color 0.2s;
 }
+
+/* ── 전역 화면 전환 애니메이션 ── */
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pageSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

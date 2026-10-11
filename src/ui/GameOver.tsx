@@ -3,6 +3,25 @@ import styles from './GameOver.module.css';
 
 export type GameOverReason = 'checkmate' | 'stalemate' | 'fifty-move' | 'repetition' | 'timeout' | 'resign';
 
+const PARTICLES: { left: string; size: number; color: string; delay: number; drift: number }[] = [
+  { left:  '6%', size: 6, color: '#e8c870', delay: 0.05, drift:  24 },
+  { left: '14%', size: 4, color: '#f0d9b5', delay: 0.22, drift: -18 },
+  { left: '23%', size: 8, color: '#c89a72', delay: 0.38, drift:  32 },
+  { left: '33%', size: 5, color: '#e8c870', delay: 0.10, drift: -28 },
+  { left: '44%', size: 7, color: '#f0d9b5', delay: 0.50, drift:  14 },
+  { left: '55%', size: 4, color: '#e8c870', delay: 0.18, drift: -22 },
+  { left: '64%', size: 6, color: '#c89a72', delay: 0.33, drift:  38 },
+  { left: '74%', size: 8, color: '#f0d9b5', delay: 0.06, drift: -26 },
+  { left: '83%', size: 5, color: '#e8c870', delay: 0.44, drift:  18 },
+  { left: '91%', size: 4, color: '#c89a72', delay: 0.26, drift: -34 },
+  { left: '28%', size: 6, color: '#e8c870', delay: 0.60, drift:  30 },
+  { left: '70%', size: 5, color: '#f0d9b5', delay: 0.42, drift: -14 },
+  { left: '49%', size: 4, color: '#c89a72', delay: 0.70, drift:  22 },
+  { left: '18%', size: 7, color: '#e8c870', delay: 0.55, drift: -36 },
+  { left: '87%', size: 6, color: '#f0d9b5', delay: 0.15, drift:  28 },
+  { left: '39%', size: 5, color: '#e8c870', delay: 0.80, drift: -10 },
+];
+
 interface Props {
   status: GameOverReason;
   loser: Color;
@@ -43,6 +62,24 @@ export function GameOver({ status, loser, playerNames, moveCount, onRestart, onR
 
   return (
     <div className={`${styles.overlay} ${resultClass}`}>
+      {!isDraw && (
+        <div className={styles.particles} aria-hidden="true">
+          {PARTICLES.map((p, i) => (
+            <span
+              key={i}
+              className={styles.particle}
+              style={{
+                left: p.left,
+                width: p.size,
+                height: p.size,
+                background: p.color,
+                animationDelay: `${p.delay}s`,
+                '--drift': `${p.drift}px`,
+              } as React.CSSProperties}
+            />
+          ))}
+        </div>
+      )}
       <div className={styles.content}>
         <div className={styles.pieceRow}>
           {isDraw ? (
