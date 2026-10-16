@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { AVAILABLE_RULESETS, type RuleSet } from '../rules';
-import { isFirebaseConfigured } from '../firebase/config';
 import type { AiDifficulty } from '../ai/engine';
 import type { PlayerNames } from '../core/types';
 import { TIME_CONTROL_OPTIONS, type TimeControl, type TimeControlMode } from '../core/timeControl';
@@ -44,9 +43,11 @@ function formatDate(iso: string): string {
   } catch { return ''; }
 }
 
+type OpponentMode = 'pvp' | 'ai' | 'online';
+
 export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
   const [selected, setSelected] = useState<RuleSet>(AVAILABLE_RULESETS[0]);
-  const [aiMode, setAiMode] = useState(true);
+  const [opponentMode, setOpponentMode] = useState<OpponentMode>('ai');
   const [difficulty, setDifficulty] = useState<AiDifficulty>('medium');
   const [whiteName, setWhiteName] = useState('');
   const [blackName, setBlackName] = useState('');
@@ -55,12 +56,17 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
   const [theme, setTheme] = useState(getCurrentTheme);
 
   function handleStart() {
+    if (opponentMode === 'online') {
+      onOnline();
+      return;
+    }
     const tc = TIME_CONTROL_OPTIONS.find(o => o.mode === timeMode)!;
+    const isAi = opponentMode === 'ai';
     const names: PlayerNames = {
       white: whiteName.trim() || '백',
-      black: aiMode ? `AI · ${DIFFICULTY_LABEL[difficulty]}` : (blackName.trim() || '흑'),
+      black: isAi ? `AI · ${DIFFICULTY_LABEL[difficulty]}` : (blackName.trim() || '흑'),
     };
-    onGame(selected, aiMode, difficulty, names, { mode: tc.mode, seconds: tc.seconds });
+    onGame(selected, isAi, difficulty, names, { mode: tc.mode, seconds: tc.seconds });
   }
 
   function handleClearRecords() {
@@ -120,22 +126,28 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
           <p className={styles.ruleLabel}>상대</p>
           <div className={styles.modeBtns}>
             <button
-              className={`${styles.modeBtn} ${!aiMode ? styles.modeBtnSelected : ''}`}
-              onClick={() => setAiMode(false)}
+              className={`${styles.modeBtn} ${opponentMode === 'pvp' ? styles.modeBtnSelected : ''}`}
+              onClick={() => setOpponentMode('pvp')}
             >
               👥 2인 대전
             </button>
             <button
-              className={`${styles.modeBtn} ${aiMode ? styles.modeBtnSelected : ''}`}
-              onClick={() => setAiMode(true)}
+              className={`${styles.modeBtn} ${opponentMode === 'ai' ? styles.modeBtnSelected : ''}`}
+              onClick={() => setOpponentMode('ai')}
             >
               🤖 AI 대전
+            </button>
+            <button
+              className={`${styles.modeBtn} ${opponentMode === 'online' ? styles.modeBtnSelected : ''}`}
+              onClick={() => setOpponentMode('online')}
+            >
+              🌐 온라인 대전
             </button>
           </div>
         </div>
 
         {/* 난이도 선택 (AI 모드일 때) */}
-        {aiMode && (
+        {opponentMode === 'ai' && (
           <div className={styles.difficultySection}>
             <p className={styles.ruleLabel}>난이도</p>
             <div className={styles.difficultyBtns}>
@@ -154,52 +166,51 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
         )}
 
         {/* 시간 모드 */}
-        <div className={styles.timeSection}>
-          <p className={styles.ruleLabel}>시간</p>
-          <div className={styles.timeBtns}>
-            {TIME_CONTROL_OPTIONS.map(({ mode, label }) => (
-              <button
-                key={mode}
-                className={`${styles.timeBtn} ${timeMode === mode ? styles.timeBtnSelected : ''}`}
-                onClick={() => setTimeMode(mode)}
-              >
-                {label}
-              </button>
-            ))}
+        {opponentMode !== 'online' && (
+          <div className={styles.timeSection}>
+            <p className={styles.ruleLabel}>시간</p>
+            <div className={styles.timeBtns}>
+              {TIME_CONTROL_OPTIONS.map(({ mode, label }) => (
+                <button
+                  key={mode}
+                  className={`${styles.timeBtn} ${timeMode === mode ? styles.timeBtnSelected : ''}`}
+                  onClick={() => setTimeMode(mode)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* 플레이어 이름 */}
-        <div className={styles.nameSection}>
-          <p className={styles.ruleLabel}>플레이어</p>
-          <div className={styles.nameInputs}>
-            <input
-              className={styles.nameInput}
-              value={whiteName}
-              onChange={e => setWhiteName(e.target.value)}
-              placeholder="백 (기본값)"
-              maxLength={16}
-            />
-            {!aiMode && (
+        {opponentMode !== 'online' && (
+          <div className={styles.nameSection}>
+            <p className={styles.ruleLabel}>플레이어</p>
+            <div className={styles.nameInputs}>
               <input
                 className={styles.nameInput}
-                value={blackName}
-                onChange={e => setBlackName(e.target.value)}
-                placeholder="흑 (기본값)"
+                value={whiteName}
+                onChange={e => setWhiteName(e.target.value)}
+                placeholder="백 (기본값)"
                 maxLength={16}
               />
-            )}
+              {opponentMode === 'pvp' && (
+                <input
+                  className={styles.nameInput}
+                  value={blackName}
+                  onChange={e => setBlackName(e.target.value)}
+                  placeholder="흑 (기본값)"
+                  maxLength={16}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* 버튼 */}
         <div className={styles.actions}>
           <button className={styles.primaryBtn} onClick={handleStart}>게임 시작</button>
-          {isFirebaseConfigured() && (
-            <button className={styles.onlineBtn} onClick={onOnline}>
-              🌐 온라인 대전
-            </button>
-          )}
           <button className={styles.tutorialBtn} onClick={onTutorial}>
             <span className={styles.tutorialIcon}>📖</span>
             튜토리얼 (처음이라면)
