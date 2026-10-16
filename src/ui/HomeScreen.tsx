@@ -46,7 +46,7 @@ function formatDate(iso: string): string {
 
 export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
   const [selected, setSelected] = useState<RuleSet>(AVAILABLE_RULESETS[0]);
-  const [aiMode, setAiMode] = useState(false);
+  const [aiMode, setAiMode] = useState(true);
   const [difficulty, setDifficulty] = useState<AiDifficulty>('medium');
   const [whiteName, setWhiteName] = useState('');
   const [blackName, setBlackName] = useState('');
