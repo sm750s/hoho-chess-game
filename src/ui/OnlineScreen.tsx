@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { AVAILABLE_RULESETS, StandardRules, type RuleSet } from '../rules';
+import { StandardRules, type RuleSet } from '../rules';
 import { getPlayerId, generateRoomId } from '../firebase/identity';
 import { createRoom, joinRoom, listenRoom } from '../firebase/room';
 import { boardToFen } from '../utils/fen';
 import type { Color } from '../core/types';
 import styles from './OnlineScreen.module.css';
-
-// Crazyhouse hand sync not supported in online mode
-const ONLINE_RULESETS: RuleSet[] = AVAILABLE_RULESETS.filter(r => r.name !== 'Crazyhouse');
 
 const BASE_URL = window.location.origin;
 
@@ -21,16 +18,23 @@ interface ReadyParams {
 }
 
 interface Props {
+  initialRuleset?: RuleSet;
   onReady: (params: ReadyParams) => void;
   onBack: () => void;
 }
 
-export function OnlineScreen({ onReady, onBack }: Props) {
+// Crazyhouse hand sync not supported in online mode
+function resolveOnlineRuleset(r?: RuleSet): RuleSet {
+  if (!r || r.name === 'Crazyhouse') return StandardRules;
+  return r;
+}
+
+export function OnlineScreen({ initialRuleset, onReady, onBack }: Props) {
   const [phase, setPhase] = useState<'setup' | 'creating' | 'joining'>('setup');
   const [myName, setMyName] = useState('');
   const [roomCodeInput, setRoomCodeInput] = useState('');
   const [createdRoomId, setCreatedRoomId] = useState('');
-  const [selectedRuleset, setSelectedRuleset] = useState<RuleSet>(StandardRules);
+  const selectedRuleset = resolveOnlineRuleset(initialRuleset);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -237,17 +241,9 @@ export function OnlineScreen({ onReady, onBack }: Props) {
 
         <div className={styles.section}>
           <p className={styles.label}>규칙</p>
-          <div className={styles.ruleCards}>
-            {ONLINE_RULESETS.map(r => (
-              <button
-                key={r.name}
-                className={`${styles.ruleCard} ${selectedRuleset === r ? styles.ruleCardSelected : ''}`}
-                onClick={() => setSelectedRuleset(r)}
-              >
-                <div className={styles.ruleCardName}>{r.name}</div>
-                <div className={styles.ruleCardDesc}>{r.description}</div>
-              </button>
-            ))}
+          <div className={styles.ruleInfo}>
+            <span className={styles.ruleInfoName}>{selectedRuleset.name}</span>
+            <span className={styles.ruleInfoDesc}>{selectedRuleset.description}</span>
           </div>
         </div>
 

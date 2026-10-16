@@ -58,6 +58,7 @@ function App() {
   if (mode === 'online') {
     return (
       <OnlineScreen
+        initialRuleset={ruleset}
         onReady={(params) => {
           setOnlineInfo({
             roomId: params.roomId,
@@ -88,7 +89,7 @@ function App() {
         setMode('game');
       }}
       onTutorial={() => setMode('tutorial')}
-      onOnline={() => setMode('online')}
+      onOnline={(selected) => { setRuleset(selected); setMode('online'); }}
     />
   );
 }

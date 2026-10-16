@@ -10,7 +10,7 @@ import styles from './HomeScreen.module.css';
 interface Props {
   onGame: (ruleset: RuleSet, aiMode: boolean, difficulty: AiDifficulty, playerNames: PlayerNames, timeControl: TimeControl) => void;
   onTutorial: () => void;
-  onOnline: () => void;
+  onOnline: (ruleset: RuleSet) => void;
 }
 
 const DIFFICULTY_OPTIONS: { value: AiDifficulty; label: string; desc: string }[] = [
@@ -57,7 +57,7 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
 
   function handleStart() {
     if (opponentMode === 'online') {
-      onOnline();
+      onOnline(selected);
       return;
     }
     const tc = TIME_CONTROL_OPTIONS.find(o => o.mode === timeMode)!;
