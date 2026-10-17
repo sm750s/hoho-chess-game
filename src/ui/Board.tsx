@@ -833,11 +833,36 @@ export function Board({
   return (
     <>
     <div className={styles.outerLayout}>
+      <div className={styles.contentWrapper}>
+      {/* ── 상단 바: 홈 버튼 + 소리/테마 ── */}
+      <div className={styles.topBar}>
+        {onExit
+          ? <button className={styles.homeBtn} onClick={onExit} aria-label="홈으로">← 홈</button>
+          : <span />
+        }
+        <div className={styles.topControls}>
+          <button
+            className={styles.soundToggle}
+            onClick={() => setSoundOn(v => !v)}
+            title={soundOn ? '효과음 끄기' : '효과음 켜기'}
+          >
+            {soundOn ? '🔊' : '🔇'}
+          </button>
+          <button
+            className={styles.themeToggle}
+            onClick={() => setTheme(toggleTheme())}
+            title={theme === 'dark' ? '라이트 모드' : '다크 모드'}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
+      </div>
+
+      {/* ── 메인 영역 ── */}
+      <div className={styles.mainArea}>
+
       {/* ── 보드 영역 ────────────────────────────────────────────────────── */}
       <div className={styles.wrapper}>
-        {onExit && (
-          <button className={styles.homeBtn} onClick={onExit} aria-label="홈으로">← 홈</button>
-        )}
 
         {/* 흑 패널 */}
         <PlayerPanel
@@ -995,22 +1020,6 @@ export function Board({
                   <span className={styles.aiThinking}> · 상대 차례</span>
                 )}
               </span>
-              <div className={styles.modeTagBtns}>
-                <button
-                  className={styles.themeToggle}
-                  onClick={() => setTheme(toggleTheme())}
-                  title={theme === 'dark' ? '라이트 모드' : '다크 모드'}
-                >
-                  {theme === 'dark' ? '☀️' : '🌙'}
-                </button>
-                <button
-                  className={styles.soundToggle}
-                  onClick={() => setSoundOn(v => !v)}
-                  title={soundOn ? '효과음 끄기' : '효과음 켜기'}
-                >
-                  {soundOn ? '🔊' : '🔇'}
-                </button>
-              </div>
             </div>
 
             {/* 기보 */}
@@ -1103,6 +1112,9 @@ export function Board({
           </>
         )}
       </div>
+
+      </div> {/* mainArea */}
+      </div> {/* contentWrapper */}
     </div>
     {gameOver && replayIndex === null && (
       <GameOver

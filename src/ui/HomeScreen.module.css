@@ -11,16 +11,32 @@
   animation: pageFadeIn 0.4s ease-out;
 }
 
-.themeBtn {
+.card {
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: min(100% - 40px, 700px);
+}
+
+.cardTopBtns {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconBtn {
   background: var(--c-bg-subtle2);
   border: 1px solid var(--c-accent-border);
   border-radius: 8px;
-  font-size: 18px;
-  width: 38px;
-  height: 38px;
+  font-size: 16px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,18 +45,8 @@
   line-height: 1;
 }
 
-.themeBtn:hover {
-  background: var(--c-bg-subtle2);
+.iconBtn:hover {
   border-color: var(--c-accent-border-hover);
-}
-
-.card {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  width: min(100% - 40px, 700px);
 }
 
 /* ── 헤더 ── */

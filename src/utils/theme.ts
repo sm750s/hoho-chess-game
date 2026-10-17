@@ -15,9 +15,9 @@ export function toggleTheme(): Theme {
   return next;
 }
 
-// 초기 적용 (로컬스토리지에 저장된 값, 없으면 다크)
+// 초기 적용 (로컬스토리지에 저장된 값, 없으면 라이트)
 try {
   const saved = localStorage.getItem('chess-theme');
   if (saved === 'light' || saved === 'dark') applyTheme(saved);
-  else applyTheme('dark');
+  else applyTheme('light');
 } catch {}

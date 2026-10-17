@@ -7,6 +7,8 @@ import { getRecords, clearRecords, type GameRecord } from '../utils/records';
 import { toggleTheme, getCurrentTheme } from '../utils/theme';
 import styles from './HomeScreen.module.css';
 
+function getSoundOn() { try { return localStorage.getItem('chess-sound') !== 'off'; } catch { return true; } }
+
 interface Props {
   onGame: (ruleset: RuleSet, aiMode: boolean, difficulty: AiDifficulty, playerNames: PlayerNames, timeControl: TimeControl) => void;
   onTutorial: () => void;
@@ -54,6 +56,13 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
   const [timeMode, setTimeMode] = useState<TimeControlMode>('unlimited');
   const [records, setRecords] = useState<GameRecord[]>(() => getRecords());
   const [theme, setTheme] = useState(getCurrentTheme);
+  const [soundOn, setSoundOn] = useState(getSoundOn);
+
+  function handleSoundToggle() {
+    const next = !soundOn;
+    setSoundOn(next);
+    try { localStorage.setItem('chess-sound', next ? 'on' : 'off'); } catch {}
+  }
 
   function handleStart() {
     if (opponentMode === 'online') {
@@ -78,14 +87,23 @@ export function HomeScreen({ onGame, onTutorial, onOnline }: Props) {
 
   return (
     <div className={styles.screen}>
-      <button
-        className={styles.themeBtn}
-        onClick={() => setTheme(toggleTheme())}
-        title={theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'}
-      >
-        {theme === 'dark' ? '☀️' : '🌙'}
-      </button>
       <div className={styles.card}>
+        <div className={styles.cardTopBtns}>
+          <button
+            className={styles.iconBtn}
+            onClick={handleSoundToggle}
+            title={soundOn ? '효과음 끄기' : '효과음 켜기'}
+          >
+            {soundOn ? '🔊' : '🔇'}
+          </button>
+          <button
+            className={styles.iconBtn}
+            onClick={() => setTheme(toggleTheme())}
+            title={theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환'}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
         <img src="/hoho_family_mini_games.png" className={styles.heroBanner} alt="호호가족의 미니게임" />
         <h1 className={styles.title}>호호가족의 체스게임</h1>
         <p className={styles.subtitle}>전략의 게임에 오신 것을 환영합니다</p>
