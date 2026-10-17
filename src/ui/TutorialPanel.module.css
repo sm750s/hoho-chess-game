@@ -46,6 +46,8 @@
   font-size: 15px;
   cursor: pointer;
   padding: 3px 6px;
+  min-height: 44px;
+  min-width: 44px;
   border-radius: 4px;
   transition: color 0.15s, background 0.15s;
 }
@@ -166,6 +168,7 @@
   padding: 11px 0;
   font-size: 14px;
   font-weight: 700;
+  min-height: 44px;
   cursor: pointer;
   width: 100%;
   transition: background 0.15s, transform 0.1s;

@@ -98,9 +98,15 @@
 body {
   background-color: var(--c-base);
   color: var(--c-text1);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.2s, color 0.2s;
+}
+
+/* ── 터치 최적화 ── */
+button, input, select, textarea {
+  touch-action: manipulation;
+  font-family: inherit;
 }
 
 /* ── 전역 화면 전환 애니메이션 ── */
