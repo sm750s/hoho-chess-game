@@ -124,9 +124,11 @@ export function OnlineScreen({ initialRuleset, onReady, onBack }: Props) {
     setTimeout(() => setCopied(false), 2000);
   }
 
+  const canWebShare = 'share' in (navigator as Record<string, unknown>);
+
   async function handleShare() {
     const link = `${BASE_URL}/?join=${createdRoomId}`;
-    if ('share' in navigator) {
+    if (canWebShare) {
       try {
         await navigator.share({
           title: '호호가족의 체스게임',
@@ -160,7 +162,7 @@ export function OnlineScreen({ initialRuleset, onReady, onBack }: Props) {
 
           <div className={styles.shareRow}>
             <button className={styles.shareBtn} onClick={handleShare}>
-              {copiedLink ? '✓ 복사됨' : 'share' in navigator ? '📤 공유하기' : '🔗 링크 복사'}
+              {copiedLink ? '✓ 복사됨' : canWebShare ? '📤 공유하기' : '🔗 링크 복사'}
             </button>
           </div>
 
