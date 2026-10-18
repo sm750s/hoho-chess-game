@@ -124,7 +124,7 @@ export function OnlineScreen({ initialRuleset, onReady, onBack }: Props) {
     setTimeout(() => setCopied(false), 2000);
   }
 
-  const canWebShare = 'share' in (navigator as Record<string, unknown>);
+  const canWebShare = 'share' in (navigator as unknown as Record<string, unknown>);
 
   async function handleShare() {
     const link = `${BASE_URL}/?join=${createdRoomId}`;
