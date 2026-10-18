@@ -131,6 +131,25 @@ export function OnlineScreen({ initialRuleset, onReady, onBack }: Props) {
     setTimeout(() => setCopiedLink(false), 2000);
   }
 
+  async function handleShare() {
+    const link = `${BASE_URL}/?join=${createdRoomId}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '호호가족의 체스게임',
+          text: '온라인 체스 대전에 초대합니다!',
+          url: link,
+        });
+      } catch {
+        // 사용자가 공유 취소 — 무시
+      }
+    } else {
+      await navigator.clipboard.writeText(link).catch(() => {});
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+    }
+  }
+
   // ── Waiting for opponent ─────────────────────────────────────────────────
 
   if (phase === 'creating') {
@@ -147,8 +166,8 @@ export function OnlineScreen({ initialRuleset, onReady, onBack }: Props) {
           </div>
 
           <div className={styles.shareRow}>
-            <button className={styles.copyLinkBtn} onClick={handleCopyLink}>
-              {copiedLink ? '✓ 복사됨' : '🔗 링크 복사'}
+            <button className={styles.shareBtn} onClick={handleShare}>
+              {copiedLink ? '✓ 복사됨' : navigator.share ? '📤 공유하기' : '🔗 링크 복사'}
             </button>
           </div>
 

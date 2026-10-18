@@ -250,7 +250,8 @@
   margin-bottom: 14px;
 }
 
-.copyLinkBtn {
+.copyLinkBtn,
+.shareBtn {
   width: 100%;
   background: var(--c-accent-bg);
   border: 1px solid var(--c-accent-border);
@@ -263,7 +264,8 @@
   transition: background 0.15s, border-color 0.15s;
 }
 
-.copyLinkBtn:hover {
+.copyLinkBtn:hover,
+.shareBtn:hover {
   background: rgba(181, 136, 99, 0.28);
   border-color: var(--c-accent-border-hover);
 }
